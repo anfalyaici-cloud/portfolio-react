@@ -1,0 +1,430 @@
+/* src/components/Navbar/Navbar.module.css */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px 5%;
+  background: rgba(var(--bg-color-rgb), 0.85);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  z-index: 1000;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-bottom: 1px solid rgba(108, 99, 255, 0.1);
+  transform: translateY(0);
+}
+
+.navbar.scrolled {
+  padding: 10px 5%;
+  background: rgba(var(--bg-color-rgb), 0.95);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(108, 99, 255, 0.05);
+  border-bottom: 1px solid rgba(108, 99, 255, 0.15);
+}
+
+.navbar.hidden {
+  transform: translateY(-100%);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 800;
+  text-decoration: none;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, 
+    rgba(108, 99, 255, 0.1), 
+    rgba(108, 99, 255, 0.05));
+  border: 1px solid rgba(108, 99, 255, 0.15);
+}
+
+.logo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    rgba(108, 99, 255, 0.2), 
+    rgba(108, 99, 255, 0.1));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.logo:hover::before {
+  opacity: 1;
+}
+
+.logo span {
+  color: var(--primary-color);
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 3s ease infinite;
+  background-size: 200% 200%;
+}
+
+.logo:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(108, 99, 255, 0.15);
+}
+
+.navLinks {
+  display: flex;
+  list-style: none;
+  gap: 2.5rem;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.navLinks li {
+  position: relative;
+}
+
+.navLinks a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 8px 0;
+  display: inline-block;
+  opacity: 0.9;
+}
+
+.navLinks a::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.navLinks a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  border-radius: 2px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navLinks a:hover {
+  opacity: 1;
+}
+
+.navLinks a:hover::before {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.navLinks a:hover::after {
+  width: 80%;
+}
+
+.navLinks a.active {
+  opacity: 1;
+}
+
+.navLinks a.active::after {
+  width: 80%;
+}
+
+.themeToggle {
+  background: linear-gradient(135deg, 
+    rgba(108, 99, 255, 0.1), 
+    rgba(108, 99, 255, 0.05));
+  border: 1px solid rgba(108, 99, 255, 0.15);
+  color: var(--text-color);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 12px 24px;
+  border-radius: 50px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+  font-weight: 600;
+}
+
+.themeToggle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.themeToggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(108, 99, 255, 0.2);
+}
+
+.themeToggle:hover::before {
+  opacity: 1;
+}
+
+.themeToggle:hover span {
+  color: white;
+}
+
+.themeToggle svg {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.themeToggle:hover svg {
+  transform: rotate(180deg);
+}
+
+.menuBtn {
+  display: none;
+  background: linear-gradient(135deg, 
+    rgba(108, 99, 255, 0.1), 
+    rgba(108, 99, 255, 0.05));
+  border: 1px solid rgba(108, 99, 255, 0.15);
+  color: var(--text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  z-index: 1001;
+}
+
+.menuBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.menuBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 20px rgba(108, 99, 255, 0.2);
+}
+
+.menuBtn:hover::before {
+  opacity: 1;
+}
+
+.menuBtn:hover svg {
+  color: white;
+}
+
+/* Version mobile */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 20px 5%;
+  }
+  
+  .navbar.scrolled {
+    padding: 15px 5%;
+  }
+  
+  .navLinks {
+    position: fixed;
+    top: 80px;
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 80px);
+    background: rgba(var(--bg-color-rgb), 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 60px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    gap: 2.5rem;
+    border-top: 1px solid rgba(108, 99, 255, 0.1);
+  }
+
+  .navLinks.active {
+    left: 0;
+  }
+
+  .navLinks a {
+    font-size: 1.4rem;
+    padding: 15px 40px;
+    border-radius: 12px;
+    background: rgba(108, 99, 255, 0.05);
+    border: 1px solid rgba(108, 99, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .navLinks a:hover {
+    background: rgba(108, 99, 255, 0.1);
+    transform: translateX(10px);
+    box-shadow: 5px 5px 20px rgba(108, 99, 255, 0.1);
+  }
+
+  .navLinks a::after {
+    display: none;
+  }
+
+  .themeToggle {
+    position: absolute;
+    top: 20px;
+    right: 70px;
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+
+  .menuBtn {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 1.6rem;
+    padding: 6px 12px;
+  }
+  
+  .themeToggle {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .menuBtn {
+    padding: 8px 12px;
+    font-size: 1.3rem;
+  }
+}
+
+/* Animations */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Élément décoratif dans la navbar */
+.navbar::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    var(--primary-color), 
+    var(--secondary-color), 
+    transparent);
+  opacity: 0.3;
+}
+/* ===== MOBILE MENU STYLE ===== */
+@media (max-width: 768px) {
+  .navLinks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* تغطي كامل الشاشة */
+    background: rgba(10, 10, 20, 0.95); /* لون غامق شفاف */
+    backdrop-filter: blur(10px); /* يعطي تأثير زجاجي */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 0.4s ease;
+    z-index: 9999; /* 👈 باش تكون فوق الكتيبة والصورة */
+  }
+
+  .navLinks.active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .navLinks a {
+    font-size: 1.8rem;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .navLinks a:hover {
+    color: var(--primary-color);
+  }
+
+  .menuBtn {
+    position: fixed;
+    top: 20px;
+    right: 25px;
+    font-size: 1.8rem;
+    color: var(--text-color);
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 10000; 
+  }
+}

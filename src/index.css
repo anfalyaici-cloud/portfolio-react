@@ -1,0 +1,105 @@
+/* ======================= */
+/*     VARIABLES GLOBALES  */
+/* ======================= */
+:root {
+  --primary-color: #FF6B8B; /* Vibrant pink */
+  --primary-light: #FF8FA3; /* Light pink */
+  --secondary-color: #FF8E53; /* Coral orange */
+  --accent-color: #FFD166; /* Golden yellow */
+  --accent-color-2: #06D6A0; /* Mint green */
+  --bg-color: #0A0A14; /* Dark blue-black */
+  --bg-gradient: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 50%, #16213e 100%);
+  --card-bg: rgba(255, 107, 139, 0.05);
+  --text-color: #F8F9FA; /* Off-white */
+  --text-light: rgba(248, 249, 250, 0.7);
+  --shadow: rgba(255, 107, 139, 0.15);
+  --hover-color: rgba(255, 107, 139, 0.2);
+  --gradient-1: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  --gradient-2: linear-gradient(45deg, var(--accent-color), var(--accent-color-2));
+}
+
+/* ======================= */
+/*       FONTS & RESET     */
+/* ======================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+html, body, .app {
+  min-height: 100vh;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  scroll-padding-top: 80px;
+
+  /* Fond global */
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255, 107, 139, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 142, 83, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(255, 209, 102, 0.1) 0%, transparent 50%),
+    linear-gradient(135deg, var(--bg-color) 0%, #1a1a2e 100%);
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: var(--text-color);
+  animation: background-pulse 20s ease infinite;
+}
+
+/* ======================= */
+/*        LIENS & BTN      */
+/* ======================= */
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* ======================= */
+/*     SCROLLBAR           */
+/* ======================= */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 5px;
+}
+.app.dark-mode ::-webkit-scrollbar-track {
+  background: #2d2d2d;
+}
+
+/* ======================= */
+/*     ANIMATIONS GLOBALES */
+/* ======================= */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.section-animation {
+  animation: slideUp 0.8s ease forwards;
+}
+
+@keyframes background-pulse {
+  0%,100% { filter: hue-rotate(0deg) brightness(1); }
+  50% { filter: hue-rotate(10deg) brightness(1.05); }
+}
+
+@keyframes float-particles {
+  0% { transform: translateY(0) rotate(0deg) scale(1); opacity:0.3; }
+  25% { transform: translateY(-100px) rotate(90deg) scale(1.1); opacity:0.5; }
+  50% { transform: translateY(-200px) rotate(180deg) scale(1); opacity:0.3; }
+  75% { transform: translateY(-100px) rotate(270deg) scale(0.9); opacity:0.5; }
+  100% { transform: translateY(0) rotate(360deg) scale(1); opacity:0.3; }
+}
